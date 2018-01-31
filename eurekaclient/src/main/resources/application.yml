@@ -1,0 +1,20 @@
+#spring.application.name=ServiceHelloA
+#server.port=8201
+#eureka.client.serviceUrl.defaultZone=http://lishangzhi:123456@localhost:8101/eureka
+
+spring:
+  application:
+    # name: service-hi
+    name: eurekaclient
+
+server:
+  #Run/Debug Configurations,右边取消勾选 Single instance only,把左侧的service-hi的Main启动配置复制1个,program arguments=--server.port=8763
+  port: 8201
+
+eureka:
+  client:
+
+    #  服务的注册中心地址 #注册中心集群地址
+    serviceUrl:
+      defaultZone: http://localhost:8101/eureka/,http://localhost:8111/eureka/,http://localhost:8112/eureka/
+

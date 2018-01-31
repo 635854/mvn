@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: service-zuul
+
+server:
+  port: 8401
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8101/eureka  #注册 中心已经开启认证
+  instance:
+    prefer-ip-address: true
+    instanceId: ${spring.application.name}:${server.port}
+#ribbon.ReadTimeout=60000
+#ribbon.ConnectTimeout=6000
+zuul:
+#以/api-a/ 开头的请求都转发给service-ribbon服务；以/api-b/开头的请求都转发给service-feign服务
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      serviceId: service-feign

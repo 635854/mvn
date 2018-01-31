@@ -1,0 +1,50 @@
+#可用properties替代,server.port=8761
+#server.port=8888
+#eureka.instance.hostname=localhost
+#eureka.client.registerWithEureka=false
+#eureka.client.fetchRegistry=false
+#eureka.client.serviceUrl.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/
+#spring.application.name=cloud-eureka-server
+##renew频率，向Eureka服务发送renew信息，默认30秒
+#eureka.instance.leaseRenewalIntervalInSeconds=10
+##服务失效时间，Eureka多长时间没收到服务的renew操作，就剔除该服务，默认90秒
+#eureka.instance.leaseExpirationDurationInSeconds=15
+
+spring:
+  application:
+    name: EurekaServer
+
+server:
+  port: 8101
+  #  port: ${PORT:${SERVER_PORT:0}}
+
+#security:
+#  basic:
+#    enabled: true # 启用认证
+#  user:
+#    name: lishangzhi
+#    password: 123456
+
+#	eureka是一个高可用的组件，它没有后端缓存，每一个实例注册之后需要向注册中心发送心跳（因此可以在内存中完成），在默认情况下erureka server也是一个eureka client ,必须要指定一个 server。
+#      Eureka server 从每个client实例接收心跳消息。 如果心跳超时，则通常将该实例从注册server中删除。
+eureka:
+#  instance:
+  instance:
+    hostname: localhost
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+#    prefer-ip-address: true # preferIpAddress=true
+
+#  client:
+  client:
+#eureka.client.registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server.
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#      defaultZone: http://lishangzhi:123456@localhost:8111/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8111/eureka/
+
+#eureka.server.enable-self-preservation=false关闭保护机制，确保注册中心可以将不可用的实例剔除;注册中心进入保护状态，不会主动从服务列表中剔除服务，此时的应该会有一行红字。
+#  server:
+#    enable-self-preservation: false

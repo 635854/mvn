@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.first</groupId>
+	<artifactId>eurekaserver</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>eurekaserver</name>
+	<description>Demo project for Spring Boot</description>
+
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.9.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<!--<spring-cloud.version>Edgware.RELEASE</spring-cloud.version>-->
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!--&lt;!&ndash;docker-maven-plugin去构建docker镜像&ndash;&gt;-->
+			<!--&lt;!&ndash; tag::plugin[] &ndash;&gt;-->
+			<!--<plugin>-->
+				<!--<groupId>com.spotify</groupId>-->
+				<!--<artifactId>docker-maven-plugin</artifactId>-->
+				<!--<version>0.4.3</version>-->
+				<!--<configuration>-->
+					<!--&lt;!&ndash;镜像名&ndash;&gt;-->
+					<!--<imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
+					<!--&lt;!&ndash;Dockerfile 的位置&ndash;&gt;-->
+					<!--<dockerDirectory>src/main/docker</dockerDirectory>-->
+					<!--&lt;!&ndash;需要和 Dockerfile 放在一起，在构建镜像时使用的文件，一般应用 jar 包需要纳入&ndash;&gt;-->
+					<!--<resources>-->
+						<!--<resource>-->
+							<!--<targetPath>/</targetPath>-->
+							<!--<directory>${project.build.directory}</directory>-->
+							<!--<include>${project.build.finalName}.jar</include>-->
+						<!--</resource>-->
+					<!--</resources>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+			<!--&lt;!&ndash; end::plugin[] &ndash;&gt;-->
+
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--@EnableEurekaServer-->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Dalston.RC1</version>
+				<!--<version>${spring-cloud.version}</version>-->
+				<!--<version>Dalston.SR2</version>-->
+				<!--<version>Dalston.SR3</version>-->
+				<!--<version>Camden.SR6</version>-->
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!--eureka server -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+		</dependency>
+
+		<!-- spring boot:test-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!--&lt;!&ndash; spring boot:web&ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-web</artifactId>-->
+		<!--</dependency>-->
+	</dependencies>
+
+	<repositories>
+		<!--@EnableEurekaServer-->
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+
+
+</project>

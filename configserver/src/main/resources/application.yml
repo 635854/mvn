@@ -1,0 +1,23 @@
+#spring:
+#  application:
+#    name: config-server
+#  cloud:
+#    config:
+#      server:
+##配置git仓库地址#本例子是公开仓库，可以不填写用户名和密码
+#        git:
+#           uri: https://github.com/kswat/microservices
+##配置仓库路径
+#          search-paths:
+#            - 'station*'
+#
+##配置仓库的分支
+#      label: master
+#server:
+#  port:  8401
+#
+##服务注册中心
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8101/eureka/
